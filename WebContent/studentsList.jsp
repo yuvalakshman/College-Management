@@ -244,7 +244,7 @@ p {
   
     </style>
 </head>
-<body>
+<body class="align">
 <h3>List of Students</h3>
 	<table align="center" border="1">
 		<thead>
@@ -277,6 +277,13 @@ p {
 			
 		</tbody>
 	</table>
-	<a href="AddController">Add more Students</a>
+	
+	<div align="center">
+	<a href="AddController">Add more Students</a><br>
+	<a href="admin.html">Home</a><br>
+	</div>
+	<div align="right">
+	<a href="Home.jsp">Logout</a>
+	</div>
 </body>
 </html>

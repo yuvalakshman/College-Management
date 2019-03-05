@@ -251,7 +251,7 @@ p {
 }
 </style>
 </head>
-<body>
+<body class="align">
 <h3>List of Departments</h3>
 	<table align="center" border="1">
 		<thead>
@@ -274,5 +274,11 @@ p {
 		</tbody>
 	</table>
 	<a href="addDept.html">Add more Department</a>
+	<div align="center">
+	<a href="admin.html">Home</a>
+	</div>
+	<div align="right">
+	<a href="home.jsp">Logout</a>
+	</div>
 </body>
 </html>

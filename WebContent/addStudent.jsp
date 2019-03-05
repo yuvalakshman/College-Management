@@ -205,6 +205,8 @@ input[type='submit'] {
 
 .form input[type='password'],
 .form input[type='text'],
+.form input[type='number'],
+.form input[type='email'],
 .form input[type='submit'] {
   width: 100%;
 }
@@ -241,6 +243,8 @@ input[type='submit'] {
 .login label,
 .login input[type='text'],
 .login input[type='password'],
+.login input[type='number'],
+.login input[type='email'],
 .login input[type='submit'] {
   border-radius: var(--loginBorderRadus);
   padding: 1rem;
@@ -255,7 +259,9 @@ input[type='submit'] {
 }
 
 .login input[type='password'],
-.login input[type='email'] {
+.login input[type='email'],
+.login input[type='number'],
+.login input[type='text'] {
   background-color: var(--loginInputBackgroundColor);
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -264,7 +270,11 @@ input[type='submit'] {
 .login input[type='password']:focus,
 .login input[type='password']:hover,
 .login input[type='email']:focus,
-.login input[type='email']:hover {
+.login input[type='email']:hover
+.login input[type='number']:focus,
+.login input[type='number']:hover
+.login input[type='text']:focus,
+.login input[type='text']:hover {
   background-color: var(--loginInputHoverBackgroundColor);
 }
 
@@ -348,8 +358,13 @@ p {
 			</div><br>
 			
 				<div>
-					<button type="submit" class="btn btn-primary btn-lg">ADD</button>
+					<button type="submit" class="btn btn-primary btn-lg">ADD</button><br>
+					<a href="admin.html">Home</a>
 				</div>
+				
+	<div align="right">
+	<a href="Home.jsp">Logout</a>
+	</div>
 	</form>
 </body>
 </html>

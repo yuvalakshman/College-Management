@@ -95,7 +95,7 @@ html {
 
 body {
   background-color: var(--bodyBackgroundColor);
-  color: white;
+  color: teal;
   font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
   font-size: var(--bodyFontSize);
   font-weight: var(--bodyFontWeight);
@@ -148,7 +148,7 @@ input[type='submit'] {
 }
 
 .form input[type='password'],
-.form input[type='text'],
+.form input[type='number'],
 .form input[type='submit'] {
   width: 100%;
 }
@@ -183,7 +183,7 @@ input[type='submit'] {
 }
 
 .login label,
-.login input[type='text'],
+.login input[type='number'],
 .login input[type='password'],
 .login input[type='submit'] {
   border-radius: var(--loginBorderRadus);
@@ -199,7 +199,7 @@ input[type='submit'] {
 }
 
 .login input[type='password'],
-.login input[type='email'] {
+.login input[type='number'] {
   background-color: var(--loginInputBackgroundColor);
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -207,8 +207,8 @@ input[type='submit'] {
 
 .login input[type='password']:focus,
 .login input[type='password']:hover,
-.login input[type='email']:focus,
-.login input[type='email']:hover {
+.login input[type='number']:focus,
+.login input[type='number']:hover {
   background-color: var(--loginInputHoverBackgroundColor);
 }
 
@@ -250,7 +250,7 @@ p {
 }
 </style>
 </head>
-<body>
+<body class="align">
 <form method=post action="DeleteServlet" class="form login">
 <h4 align="center">${MESSAGE}</h4>
 		<table align="center">
@@ -258,10 +258,15 @@ p {
 				<td>Roll</td>
 				<td><input type="number" name="roll"></td>
 			</tr>
-			<tr>
-			<td><button type="submit">DELETE</button></td>
-			</tr>
+			
 		</table>
+		<div align="center">
+		<button type="submit">DELETE</button><br>
+	<a href="admin.html">Home</a>
+	</div>
+	<div align="right">
+	<a href="Home.jsp">Logout</a>
+	</div>
 	</form>
 </body>
 </html>

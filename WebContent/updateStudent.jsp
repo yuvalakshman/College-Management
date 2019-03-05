@@ -95,7 +95,7 @@ html {
 
 body {
   background-color: var(--bodyBackgroundColor);
-  color: white;
+  color: teal;
   font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
   font-size: var(--bodyFontSize);
   font-weight: var(--bodyFontWeight);
@@ -147,7 +147,7 @@ input[type='submit'] {
   margin: calc(var(--formFieldMargin) * -1);
 }
 
-.form input[type='password'],
+.form input[type='number'],
 .form input[type='text'],
 .form input[type='submit'] {
   width: 100%;
@@ -184,7 +184,7 @@ input[type='submit'] {
 
 .login label,
 .login input[type='text'],
-.login input[type='password'],
+.login input[type='number'],
 .login input[type='submit'] {
   border-radius: var(--loginBorderRadus);
   padding: 1rem;
@@ -199,7 +199,8 @@ input[type='submit'] {
 }
 
 .login input[type='password'],
-.login input[type='email'] {
+.login input[type='text'],
+.login input[type='number'] {
   background-color: var(--loginInputBackgroundColor);
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -207,8 +208,10 @@ input[type='submit'] {
 
 .login input[type='password']:focus,
 .login input[type='password']:hover,
-.login input[type='email']:focus,
-.login input[type='email']:hover {
+.login input[type='number']:focus,
+.login input[type='number']:hover
+.login input[type='text']:focus,
+.login input[type='text']:hover {
   background-color: var(--loginInputHoverBackgroundColor);
 }
 
@@ -250,7 +253,7 @@ p {
 }
 </style>
 </head>
-<body>
+<body class="align">
 <form method=post action="UpdateServlet" class="form login">
 <h4 align="center">${MESSAGE}</h4>
 		<table align="center" border="1">
@@ -262,10 +265,15 @@ p {
 				<td>Name to be updated</td>
 				<td><input type="text" name="name"></td>
 			</tr>
-			<tr>
-			<td><button type="submit">UPDATE</button></td>
-			</tr>
 		</table>
+		
+		<div align="center">
+		<button type="submit">UPDATE</button><br>
+	<a href="admin.html">Home</a>
+	</div>
+	<div align="right">
+	<a href="Home.jsp">Logout</a>
+	</div>
 	</form>
 </body>
 </html>

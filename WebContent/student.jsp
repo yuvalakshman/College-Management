@@ -250,7 +250,7 @@ p {
 }
 </style>
 </head>
-<body>
+<body class="align">
 <h3>Student Information</h3>
 <h4 align="center">${MESSAGE}</h4>
 	<table border="1" align="center">
@@ -285,8 +285,8 @@ p {
 	<div align="center">
 	<a href="findByRoll.jsp">Find more Students</a>
 	</div>
-	<div align="center">
-	<a href="admin.html">Go Back</a>
+	<div align="right">
+	<a href="home.jsp">Logout</a>
 	</div>
 </body>
 </html>

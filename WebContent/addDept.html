@@ -147,6 +147,7 @@ input[type='submit'] {
 
 .form input[type='password'],
 .form input[type='text'],
+.form input[type='number'],
 .form input[type='submit'] {
   width: 100%;
 }
@@ -182,6 +183,7 @@ input[type='submit'] {
 
 .login label,
 .login input[type='text'],
+.login input[type='number'],
 .login input[type='password'],
 .login input[type='submit'] {
   border-radius: var(--loginBorderRadus);
@@ -197,7 +199,8 @@ input[type='submit'] {
 }
 
 .login input[type='password'],
-.login input[type='email'] {
+.login input[type='number'],
+.login input[type='text'] {
   background-color: var(--loginInputBackgroundColor);
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -205,8 +208,10 @@ input[type='submit'] {
 
 .login input[type='password']:focus,
 .login input[type='password']:hover,
-.login input[type='email']:focus,
-.login input[type='email']:hover {
+.login input[type='number']:focus,
+.login input[type='number']:hover
+.login input[type='text']:focus,
+.login input[type='text']:hover {
   background-color: var(--loginInputHoverBackgroundColor);
 }
 
@@ -248,7 +253,7 @@ p {
 }
 </style>
 </head>
-<body>
+<body class="align">
 <form method=post action="AddDeptServlet" class="form login">
 		<table align="center">
 			<tr>
@@ -269,6 +274,12 @@ p {
 				</td>
 			</tr>
 			</table>
+			<div align="center">
+	<a href="admin.html">Home</a>
+	</div>
+	<div align="right">
+	<a href="Home.jsp">Logout</a>
+	</div>
 			</form>
 </body>
 </html>

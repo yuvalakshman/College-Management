@@ -1,0 +1,40 @@
+select * from authors;
+select * from users;
+insert into authors
+values(101,'Herbert',to_date('1970-07-07','yyyy-mm-dd'));
+create table students
+(roll number,
+password varchar2(15),
+name varchar2(30),
+attendance float(5),
+cgpa float(5),
+batch varchar2(10));
+select * from students;
+delete from students where cgpa=null;
+delete from students;
+commit;
+desc students;
+create table admin
+(email varchar2(30),
+password varchar2(30));
+select * from admin;
+select * from students;
+delete from students where roll =8;
+where roll=1 and password=123;
+
+alter table students
+add primary key (roll);
+
+alter table admin
+add name varchar2(20);
+alter table students
+add dept_id number references department(dept_id);
+create table department
+(dept_id number primary key,
+name varchar2(20),
+hod varchar2(20));
+select*from department;
+commit;
+desc students;
+
+select roll,name,attendance,cgpa,batch,mail,dept_id from students;

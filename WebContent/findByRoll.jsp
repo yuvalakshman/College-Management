@@ -148,7 +148,7 @@ input[type='submit'] {
 }
 
 .form input[type='password'],
-.form input[type='text'],
+.form input[type='number'],
 .form input[type='submit'] {
   width: 100%;
 }
@@ -183,7 +183,7 @@ input[type='submit'] {
 }
 
 .login label,
-.login input[type='text'],
+.login input[type='number'],
 .login input[type='password'],
 .login input[type='submit'] {
   border-radius: var(--loginBorderRadus);
@@ -199,7 +199,7 @@ input[type='submit'] {
 }
 
 .login input[type='password'],
-.login input[type='email'] {
+.login input[type='number'] {
   background-color: var(--loginInputBackgroundColor);
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -207,8 +207,8 @@ input[type='submit'] {
 
 .login input[type='password']:focus,
 .login input[type='password']:hover,
-.login input[type='email']:focus,
-.login input[type='email']:hover {
+.login input[type='number']:focus,
+.login input[type='number']:hover {
   background-color: var(--loginInputHoverBackgroundColor);
 }
 
@@ -258,9 +258,13 @@ p {
 			<h3>Roll</h3>
 			<input type="number" name="roll" max=99999 required>
 		</div><br>
-		<div>
-		<button type="submit" class="btn btn-primary btn-lg">FIND</button>
+		<div align="center">
+		<button type="submit" class="btn btn-primary btn-lg">FIND</button><br>
+		<a href="admin.html">Home</a>
 		</div>
+	<div align="right">
+	<a href="Home.jsp">Logout</a>
+	</div>
 	</form>
 </body>
 </html>

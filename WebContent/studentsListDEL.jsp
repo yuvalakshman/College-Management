@@ -251,7 +251,7 @@ p {
 }
 </style>
 </head>
-<body>
+<body class="align">
 <h3>List of Students</h3>
 	<table align="center" border="1">
 		<thead>
@@ -285,6 +285,13 @@ p {
 			
 		</tbody>
 	</table>
-	<a href="deleteStudent.jsp">Remove more Students</a>
+	
+	<div align="center">
+	<a href="deleteStudent.jsp">Remove more Students</a><br>
+	<a href="admin.html">Home</a>
+	</div>
+	<div align="right">
+	<a href="Home.jsp">Logout</a>
+	</div>
 </body>
 </html>
