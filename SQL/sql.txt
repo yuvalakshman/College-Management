@@ -1,5 +1,5 @@
 create table students
-(roll number primary key,
+(roll number not null,
 name varchar2(30) not null,
 password varchar2(15)not null,
 mail varchar2(30) not null,
@@ -9,6 +9,20 @@ batch varchar2(10)not null,
 dept_id number references department(dept_id),
 constraint students_unique_id unique(mail)
 );
+
+alter table students
+add gender varchar2(10) constraint STUDENTS_CHECK_GENDER check (gender in('male','female'));
+
+alter table students
+add id number;
+
+CREATE SEQUENCE  STUDENTS_ID_SEQ INCREMENT BY 1 START WITH 1;
+
+alter table students
+drop constraint SYS_C004012;
+
+alter table students
+modify id primary key;
 
 create table department
 (dept_id number primary key,
@@ -21,3 +35,9 @@ create table admin
 password varchar2(30) not null,
 name varchar2(20) not null unique
 );
+
+alter table admin
+drop constraint SYS_C004009;
+
+alter table admin 
+add id number primary key;
