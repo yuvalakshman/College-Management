@@ -10,54 +10,61 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chainsys.dao.AdminDAO;
+import com.chainsys.dao.StudentsDAO;
+import com.chainsys.model.Students;
+
 /**
  * Servlet implementation class StudentLoginServlet
  */
 @WebServlet("/StudentLoginServlet")
 public class StudentLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String password =request.getParameter("password");
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		String password = request.getParameter("password");
 		int roll = Integer.parseInt(request.getParameter("roll"));
-		
+
 		Students students = new Students();
-		
+
 		students.setRoll(roll);
 		students.setPassword(password);
-		
+
 		StudentsDAO dao = new StudentsDAO();
-		
+
 		try {
 			boolean b = dao.existingStudent(students);
-			if(b){
-				
+			if (b) {
+
 				AdminDAO dao1 = new AdminDAO();
 				try {
 					Students b1 = dao1.findByRoll(students);
 					request.setAttribute("students", b1);
-					RequestDispatcher rd = request.getRequestDispatcher("student.jsp");
+					RequestDispatcher rd = request
+							.getRequestDispatcher("student.jsp");
 					rd.forward(request, response);
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
-					
+
 				}
-				//RequestDispatcher rd = request.getRequestDispatcher("student.html");
-				//rd.forward(request, response);
-			}
-			else{
-				RequestDispatcher rd = request.getRequestDispatcher("studentLogin.html");
-			//	out.println("invalid username or password");
+				// RequestDispatcher rd =
+				// request.getRequestDispatcher("student.html");
+				// rd.forward(request, response);
+			} else {
+				request.setAttribute("MESSAGE",
+						"!..INVALID EMAIL OR PASSWORD..!");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("studentLogin.html");
+
 				rd.forward(request, response);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 	}
 
 }

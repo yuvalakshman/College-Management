@@ -11,18 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chainsys.dao.AdminDAO;
+import com.chainsys.model.Department;
+
 /**
  * Servlet implementation class AddController
  */
 @WebServlet("/AddController")
 public class AddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		AdminDAO dao = new AdminDAO();
-		ArrayList<Department> list=new ArrayList<Department>();
-		 try {
+		ArrayList<Department> list = new ArrayList<Department>();
+		try {
 			list = dao.deptName();
 			request.setAttribute("DEPARTMENT", list);
 			RequestDispatcher rd = request
@@ -33,6 +36,5 @@ public class AddController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 
 }

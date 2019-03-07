@@ -1,7 +1,7 @@
-package com.chainsys.controller;
+package com.chainsys.model;
 
 public class Password {
-	
+
 	private String password;
 
 	@Override

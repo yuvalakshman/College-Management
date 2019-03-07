@@ -2,7 +2,6 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,14 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.chainsys.dao.AdminDAO;
+import com.chainsys.dao.StudentsDAO;
+import com.chainsys.model.Department;
+import com.chainsys.model.Students;
+
 /**
  * Servlet implementation class AddServlet
  */
 @WebServlet("/AddServlet")
 public class AddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		int roll = Integer.parseInt(request.getParameter("roll"));
 		String name = request.getParameter("name");
@@ -28,7 +33,7 @@ public class AddServlet extends HttpServlet {
 		String batch = request.getParameter("batch");
 		int dept_id = Integer.parseInt(request.getParameter("dept"));
 		String mail = request.getParameter("mail");
-		
+
 		Students students = new Students();
 		Department department = new Department();
 		students.setRoll(roll);
@@ -40,38 +45,33 @@ public class AddServlet extends HttpServlet {
 		students.setMail(mail);
 		department.setDept_id(dept_id);
 		students.setDepartment(department);
-		
-		
+
 		AdminDAO dao = new AdminDAO();
 		StudentsDAO daostu = new StudentsDAO();
 		try {
-			boolean	b=daostu.checkStudent(students);
-			if(b)
-			{
+			boolean b = daostu.checkStudent(students);
+			if (b) {
 				dao.addStudents(students);
-				ArrayList<Students> list=new ArrayList<Students>();
+				ArrayList<Students> list = new ArrayList<Students>();
 				list = dao.findAll();
 				request.setAttribute("STUDENTS", list);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("studentsList.jsp");
-				rd.forward(request, response);	
-			}
-			else
-			{
-				Students b1=dao.findByRoll(students);
-				
-				request.setAttribute("MESSAGE", "..!!Student Already Exists..!!");
+				rd.forward(request, response);
+			} else {
+				Students b1 = dao.findByRoll(students);
+
+				request.setAttribute("MESSAGE",
+						"..!!Student Already Exists..!!");
 				request.setAttribute("students", b1);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("student.jsp");
-				rd.forward(request, response);		
+				rd.forward(request, response);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	}
-
-
+}
