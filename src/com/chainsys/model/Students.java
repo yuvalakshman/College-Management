@@ -7,9 +7,18 @@ public class Students {
 	private float attendance;
 	private float cgpa;
 	private String batch;
-	// private int dept_id;
 	private String mail;
+	private int id;
 	Department department;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 
 	public Department getDepartment() {
 		return department;
@@ -23,7 +32,8 @@ public class Students {
 	public String toString() {
 		return "Students [roll=" + roll + ", password=" + password + ", name="
 				+ name + ", attendance=" + attendance + ", cgpa=" + cgpa
-				+ ", batch=" + batch + ", mail=" + mail + "]";
+				+ ", batch=" + batch + ", mail=" + mail + ", id=" + id
+				+ ", department=" + department + "]";
 	}
 
 	public int getRoll() {
