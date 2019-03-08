@@ -14,12 +14,15 @@ import com.chainsys.util.ConnectionUtil;
 public class AdminDAO {
 
 	ResultSet resultSet = null;
-
+/**
+ * 
+ * @param students
+ */
 	public void addStudents(Students students) {
 		try {
 			Connection connection = ConnectionUtil.getConnection();
 			System.out.println(connection);
-			String sql = "insert into students(roll,password,name,attendance,cgpa,batch,mail,dept_id) values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into students(roll,password,name,attendance,cgpa,batch,mail,dept_id,id,gender) values(?,?,?,?,?,?,?,?,STUDENTS_ID_SEQ.NEXTVAL,?)";
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(sql);
 			preparedStatement.setString(3, students.getName());
@@ -29,9 +32,8 @@ public class AdminDAO {
 			preparedStatement.setString(2, students.getPassword());
 			preparedStatement.setString(6, students.getBatch());
 			preparedStatement.setInt(8, students.getDepartment().getDept_id());
-			// System.out.println(students.getMail());
 			preparedStatement.setString(7, students.getMail());
-
+			preparedStatement.setString(9, students.getGender());
 			int rows = preparedStatement.executeUpdate();
 			System.out.println("Rows inserted: " + rows);
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
@@ -53,7 +55,6 @@ public class AdminDAO {
 			System.out.println("Rows updated:" + rows);
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -70,7 +71,6 @@ public class AdminDAO {
 			System.out.println("Rows deleted:" + rows);
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -78,25 +78,24 @@ public class AdminDAO {
 	public Students findByRoll(Students students) throws SQLException {
 		Students b = null;
 		Department dept = new Department();
-		AdminDAO dao = new AdminDAO();
+		DepartmentDAO dao1 = new DepartmentDAO();
 		Connection connection = ConnectionUtil.getConnection();
-		String sql = "select roll,name,attendance,cgpa,batch,mail,dept_id from students where roll=?";
+		String sql = "select * from students where roll=?";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		preparedStatement.setInt(1, students.getRoll());
 		resultSet = preparedStatement.executeQuery();
 		if (resultSet.next()) {
 			b = new Students();
 			b.setRoll(resultSet.getInt("roll"));
-			// b.setPassword(resultSet.getString("password"));
 			b.setName(resultSet.getString("name"));
 			b.setAttendance(resultSet.getFloat("attendance"));
 			b.setCgpa(resultSet.getFloat("cgpa"));
 			b.setBatch(resultSet.getString("batch"));
 			b.setMail(resultSet.getString("mail"));
-			// b.setDept_id(resultSet.getInt("dept_id"));
+			b.setGender(resultSet.getString("gender"));
 			dept.setDept_id(resultSet.getInt("dept_id"));
 			b.setDepartment(dept);
-			dept = dao.getDept(dept.getDept_id());
+			dept = dao1.getDept(dept.getDept_id());
 			b.setDepartment(dept);
 
 			ConnectionUtil.close(connection, preparedStatement, resultSet);
@@ -105,10 +104,10 @@ public class AdminDAO {
 	}
 
 	public ArrayList<Students> findAll() throws SQLException {
-		AdminDAO dao = new AdminDAO();
+		DepartmentDAO dao1 = new DepartmentDAO();
 		Department dept = new Department();
 		Connection connection = ConnectionUtil.getConnection();
-		String sql = "select roll,name,attendance,cgpa,batch,mail,dept_id from students";
+		String sql = "select * from students";
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		resultSet = preparedStatement.executeQuery();
 		ArrayList<Students> list = new ArrayList<Students>();
@@ -121,10 +120,11 @@ public class AdminDAO {
 			b.setCgpa(resultSet.getFloat("cgpa"));
 			b.setBatch(resultSet.getString("batch"));
 			b.setMail(resultSet.getString("mail"));
+			b.setGender(resultSet.getString("gender"));
 			// b.setDept_id(resultSet.getInt("dept_id"));
 			dept.setDept_id(resultSet.getInt("dept_id"));
 			b.setDepartment(dept);
-			dept = dao.getDept(dept.getDept_id());
+			dept = dao1.getDept(dept.getDept_id());
 			b.setDepartment(dept);
 
 			list.add(b);
@@ -209,12 +209,13 @@ public class AdminDAO {
 		try {
 			Connection connection = ConnectionUtil.getConnection();
 			System.out.println(connection);
-			String sql = "insert into admin(email,password,name) values(?,?,?)";
+			String sql = "insert into admin(email,password,name,id) values(?,?,?,?)";
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(sql);
 			preparedStatement.setString(2, admin.getPassword());
 			preparedStatement.setString(1, admin.getEmail());
 			preparedStatement.setString(3, admin.getName());
+			preparedStatement.setInt(4, admin.getId());
 
 			int rows = preparedStatement.executeUpdate();
 			System.out.println("Rows inserted: " + rows);
@@ -224,53 +225,5 @@ public class AdminDAO {
 		}
 	}
 
-	public Department getDept(int dept_id) throws SQLException {
-		Department dept = new Department();
-		Connection connection = ConnectionUtil.getConnection();
-		String sql = "select name,hod from department where dept_id=?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setInt(1, dept_id);
-		resultSet = preparedStatement.executeQuery();
-		if (resultSet.next()) {
-			String name = resultSet.getString("name");
-			String hod = resultSet.getString("hod");
-			dept.setName(name);
-			dept.setHod(hod);
-		}
-		ConnectionUtil.close(connection, preparedStatement, resultSet);
-		return dept;
-
-	}
-
-	public ArrayList<Department> deptName() throws SQLException {
-
-		Connection connection = ConnectionUtil.getConnection();
-		String sql = "select dept_id,name from department";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		resultSet = preparedStatement.executeQuery();
-		ArrayList<Department> list = new ArrayList<Department>();
-		while (resultSet.next()) {
-			Department dept = new Department();
-			dept.setDept_id(resultSet.getInt("dept_id"));
-			dept.setName(resultSet.getString("name"));
-
-			list.add(dept);
-		}
-		ConnectionUtil.close(connection, preparedStatement, resultSet);
-		return list;
-	}
-
-	public void addDept(Department department) throws SQLException {
-		Connection connection = ConnectionUtil.getConnection();
-		String sql = "insert into department(dept_id,name,hod) values(?,?,?)";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-		preparedStatement.setInt(1, department.getDept_id());
-		preparedStatement.setString(2, department.getName());
-		preparedStatement.setString(3, department.getHod());
-
-		int rows = preparedStatement.executeUpdate();
-		System.out.println("Rows inserted: " + rows);
-		ConnectionUtil.close(connection, preparedStatement, resultSet);
-	}
-
+	
 }

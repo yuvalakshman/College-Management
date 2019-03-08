@@ -79,8 +79,7 @@ svg {
 	animation-delay: .8s;
 }
 
-@
-keyframes float { 100% {
+@keyframes float { 100% {
 	transform: translateY(20px);
 }
 

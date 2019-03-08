@@ -7,225 +7,214 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <style>
-@
-use postcss-cssnext ;
-	/* config.css */ 
-
-:root { -
-	-baseColor: #606468;
-}
+/* config.css */
 
 /* helpers/align.css */
+
 .align {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 /* helpers/grid.css */
-:root { -
-	-gridMaxWidth: 20rem; -
-	-gridWidth: 90%;
-}
 
 .grid {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: var(- -gridMaxWidth);
-	width: var(- -gridWidth);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 320px;
+  max-width: 20rem;
+  width: 90%;
 }
 
 /* helpers/hidden.css */
+
 .hidden {
-	border: 0;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 /* helpers/icon.css */
-:root { -
-	-iconFill: var(- -baseColor);
-}
 
 .icons {
-	display: none;
+  display: none;
 }
 
 .icon {
-	display: inline-block;
-	fill: var(- -iconFill);
-	font-size: 1rem;
-	height: 1em;
-	vertical-align: middle;
-	width: 1em;
+  display: inline-block;
+  fill: #606468;
+  font-size: 16px;
+  font-size: 1rem;
+  height: 1em;
+  vertical-align: middle;
+  width: 1em;
 }
 
 /* layout/base.css */
-:root { -
-	-htmlFontSize: 100%; -
-	-bodyBackgroundColor: #2c3338; -
-	-bodyColor: var(- -baseColor); -
-	-bodyFontFamily: 'Open Sans'; -
-	-bodyFontFamilyFallback: sans-serif; -
-	-bodyFontSize: 0.875rem; -
-	-bodyFontWeight: 400; -
-	-bodyLineHeight: 1.5;
-}
 
 * {
-	box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 html {
-	box-sizing: border-box;
-	font-size: var(- -htmlFontSize);
-	height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 100%;
+  height: 100%;
 }
 
 body {
-	background-color: var(- -bodyBackgroundColor);
-	color: white;
-	font-family: var(- -bodyFontFamily), var(- -bodyFontFamilyFallback);
-	font-size: var(- -bodyFontSize);
-	font-weight: var(- -bodyFontWeight);
-	height: 100%;
-	line-height: var(- -bodyLineHeight);
-	margin: 0;
-	min-height: 100vh;
+  background-color: #2c3338;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  height: 100%;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
 }
 
 /* modules/anchor.css */
-:root { -
-	-anchorColor: #eee;
-}
 
 a {
-	color: var(- -anchorColor);
-	outline: 0;
-	text-decoration: none;
+  color: #007bff;
+  outline: 0;
+  text-decoration: none;
 }
 
-a:focus, a:hover {
-	text-decoration: underline;
+a:focus,
+a:hover {
+  text-decoration: underline;
 }
 
 /* modules/form.css */
-:root { -
-	-formFieldMargin: 0.875rem;
-}
 
 input {
-	background-image: none;
-	border: 0;
-	color: inherit;
-	font: inherit;
-	margin: 0;
-	outline: 0;
-	padding: 0;
-	transition: background-color 0.3s;
+  background-image: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 
 input[type='submit'] {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .form {
-	margin: calc(var(- -formFieldMargin)* -1);
+  margin: -14px;
+  margin: -0.875rem;
 }
 
-.form input[type='password'], .form input[type='text'], .form input[type='submit']
-	{
-	width: 100%;
+.form input[type='number'],
+.form input[type='text'],
+.form input[type='submit'] {
+  width: 100%;
 }
 
 .form__field {
-	display: flex;
-	margin: var(- -formFieldMargin);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 14px;
+  margin: 0.875rem;
 }
 
 .form__input {
-	flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 /* modules/login.css */
-:root { -
-	-loginBorderRadus: 0.25rem; -
-	-loginColor: #eee; -
-	-loginInputBackgroundColor: #3b4148; -
-	-loginInputHoverBackgroundColor: #434a52; -
-	-loginLabelBackgroundColor: #363b41; -
-	-loginSubmitBackgroundColor: RoyalBlue; -
-	-loginSubmitColor: #eee; -
-	-loginSubmitHoverBackgroundColor: RoyalBlue;
-}
 
 .login {
-	color: var(- -loginColor);
+  color: #eee;
 }
 
-.login label, .login input[type='text'], .login input[type='password'],
-	.login input[type='submit'] {
-	border-radius: var(- -loginBorderRadus);
-	padding: 1rem;
+.login label,
+.login input[type='text'],
+.login input[type='number'],
+.login input[type='submit'] {
+  border-radius: 0.25rem;
+  padding: 16px;
+  padding: 1rem;
 }
 
 .login label {
-	background-color: var(- -loginLabelBackgroundColor);
-	border-bottom-right-radius: 0;
-	border-top-right-radius: 0;
-	padding-left: 1.25rem;
-	padding-right: 1.25rem;
+  background-color: #363b41;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  padding-left: 20px;
+  padding-left: 1.25rem;
+  padding-right: 20px;
+  padding-right: 1.25rem;
 }
 
-.login input[type='password'], .login input[type='email'] {
-	background-color: var(- -loginInputBackgroundColor);
-	border-bottom-left-radius: 0;
-	border-top-left-radius: 0;
+.login input[type='password'],
+.login input[type='number'],
+.login input[type='text'],
+.login input[type='email'] {
+  background-color: #3b4148;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
-.login input[type='password']:focus, .login input[type='password']:hover,
-	.login input[type='email']:focus, .login input[type='email']:hover {
-	background-color: var(- -loginInputHoverBackgroundColor);
+.login input[type='password']:focus,
+.login input[type='password']:hover,
+.login input[type='number']:focus,
+.login input[type='number']:hover
+.login input[type='text']:focus,
+.login input[type='text']:hover {
+  background-color: #434a52;
 }
 
 .login input[type='submit'] {
-	background-color: var(- -loginSubmitBackgroundColor);
-	color: var(- -loginSubmitColor);
-	cursor: pointer;
-	font-weight: 700;
-	text-transform: uppercase;
+  background-color: #0000ff;
+  color: #eee;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.login input[type='submit']:focus, .login input[type='submit']:hover {
-	background-color: var(- -loginSubmitHoverBackgroundColor);
+.login input[type='submit']:focus,
+.login input[type='submit']:hover {
+  background-color: #0000f0;
 }
 
 /* modules/text.css */
-:root { -
-	-paragraphMarginBottom: 1.5rem; -
-	-paragraphMarginTop: 1.5rem;
-}
 
 p {
-	margin-bottom: var(- -paragraphMarginBottom);
-	margin-top: var(- -paragraphMarginTop);
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+  margin-top: 24px;
+  margin-top: 1.5rem;
 }
 
 .text--center {
-	text-align: center;
-}
-
-.form {
-	position: absolute;
-	top: 30%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  text-align: center;
 }
 </style>
 </head>
@@ -256,7 +245,7 @@ p {
 		<a href="admin.html">Home</a>
 	</div>
 	<div align="right">
-		<a href="home.jsp">Logout</a>
+		<a href="Home.jsp">Logout</a>
 	</div>
 </body>
 </html>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.chainsys.dao.AdminDAO;
+import com.chainsys.dao.DepartmentDAO;
 import com.chainsys.model.Department;
 
 /**
@@ -35,16 +36,16 @@ public class AddDeptServlet extends HttpServlet {
 		department.setHod(hod);
 
 		AdminDAO dao = new AdminDAO();
+		DepartmentDAO dao1 = new DepartmentDAO();
 
 		try {
-			dao.addDept(department);
+			dao1.addDept(department);
 			List<Department> list = dao.allDept();
 			request.setAttribute("DEPARTMENT", list);
 			RequestDispatcher rd = request
 					.getRequestDispatcher("departmentList.jsp");
 			rd.include(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

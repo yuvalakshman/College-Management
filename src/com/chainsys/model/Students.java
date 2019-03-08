@@ -9,7 +9,17 @@ public class Students {
 	private String batch;
 	private String mail;
 	private int id;
+	private String gender;
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	Department department;
+	
 
 	public int getId() {
 		return id;
@@ -33,7 +43,7 @@ public class Students {
 		return "Students [roll=" + roll + ", password=" + password + ", name="
 				+ name + ", attendance=" + attendance + ", cgpa=" + cgpa
 				+ ", batch=" + batch + ", mail=" + mail + ", id=" + id
-				+ ", department=" + department + "]";
+				+ ", gender=" + gender + ", department=" + department + "]";
 	}
 
 	public int getRoll() {

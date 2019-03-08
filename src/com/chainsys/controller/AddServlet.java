@@ -1,10 +1,9 @@
 package com.chainsys.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +22,7 @@ public class AddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response) {
 
 		int roll = Integer.parseInt(request.getParameter("roll"));
 		String name = request.getParameter("name");
@@ -33,6 +32,7 @@ public class AddServlet extends HttpServlet {
 		String batch = request.getParameter("batch");
 		int dept_id = Integer.parseInt(request.getParameter("dept"));
 		String mail = request.getParameter("mail");
+		String gender = request.getParameter("gender");
 
 		Students students = new Students();
 		Department department = new Department();
@@ -45,6 +45,7 @@ public class AddServlet extends HttpServlet {
 		students.setMail(mail);
 		department.setDept_id(dept_id);
 		students.setDepartment(department);
+		students.setGender(gender);
 
 		AdminDAO dao = new AdminDAO();
 		StudentsDAO daostu = new StudentsDAO();

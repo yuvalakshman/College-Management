@@ -21,7 +21,7 @@ public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+			HttpServletResponse response){
 
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
@@ -38,14 +38,25 @@ public class AdminLoginServlet extends HttpServlet {
 			if (b) {
 				RequestDispatcher rd = request
 						.getRequestDispatcher("admin.html");
-				rd.forward(request, response);
+				try {
+					rd.forward(request, response);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} else {
 				request.setAttribute("MESSAGE",
 						"!..INVALID EMAIL OR PASSWORD..!");
 				RequestDispatcher rd = request
 						.getRequestDispatcher("adminLogin.jsp");
-				// out.println("invalid username or password");
-				rd.forward(request, response);
+				try {
+					rd.forward(request, response);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.chainsys.dao.AdminDAO;
+import com.chainsys.dao.DepartmentDAO;
 import com.chainsys.model.Department;
 
 /**
@@ -23,10 +23,10 @@ public class AddController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		AdminDAO dao = new AdminDAO();
+		DepartmentDAO dao1 = new DepartmentDAO();
 		ArrayList<Department> list = new ArrayList<Department>();
 		try {
-			list = dao.deptName();
+			list = dao1.deptName();
 			request.setAttribute("DEPARTMENT", list);
 			RequestDispatcher rd = request
 					.getRequestDispatcher("addStudent.jsp");
